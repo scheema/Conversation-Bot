@@ -88,7 +88,7 @@ Clone the `watson-banking-chatbot` locally. In a terminal, run:
 $ git clone https://github.com/IBM/watson-banking-chatbot
 ```
 
-We’ll be using the file (customized-version is developed or provided by IBM as a starting point) [`data/conversation/workspaces/<customized-version.json>`](data/conversation/workspaces/customized-version.json) and the folder
+We’ll be using the file (customized-version is developed or provided by IBM as a starting point) [`data/conversation/workspaces/kb_conversation.json>`](data/conversation/workspaces/kb_conversation.json.json) and the folder
 [`data/conversation/workspaces/`](data/conversation/workspaces/)
 
 ### 2. Create Watson services with IBM Cloud
