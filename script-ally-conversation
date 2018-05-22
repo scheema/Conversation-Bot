@@ -1,0 +1,110 @@
+Demonstration Video: Openbanking with WCS, WDS, Tone Analyzer
+https://www.youtube.com/watch?v=Jxi7U7VOMYg&t=670s
+
+Developer Works Article:
+  https://developer.ibm.com/code/patterns/create-cognitive-banking-chatbot/
+
+Github code:
+  https://github.com/IBM/watson-banking-chatbot?cm_sp=IBMCode-_-create-cognitive-banking-chatbot-_-Get-the-Code
+--------------
+Run locally
+NOTE: These steps are only needed when running locally instead of using the Deploy to IBM Cloud button.
+
+      Clone the repo
+      Create Watson services with IBM Cloud
+      Import the Conversation workspace
+      Load the Discovery documents
+      Configure credentials
+      Run the application
+
+1. Clone the repo
+      Clone the watson-banking-chatbot locally. In a terminal, run:
+
+$ git clone https://github.com/IBM/watson-banking-chatbot
+      We’ll be using the file data/conversation/workspaces/banking.json and the folder data/conversation/workspaces/
+
+2. Create Watson services with IBM Cloud
+      Create the following services:
+
+      Watson Conversation
+      Watson Discovery
+      Watson Tone Analyzer
+      Watson Natural Language Understanding
+
+3. Import the Conversation workspace
+Launch the Watson Conversation tool. Use the import icon button on the right
+
+
+Find the local version of data/conversation/workspaces/banking.json and select Import. Find the Workspace ID by clicking on the context menu of the new workspace and select View details. Save this ID for later.
+
+Get Environment ID, Collection ID information for WDS
+
+Srinivass-MBP:~ sriniva@us.ibm.com$ curl -X GET -u "b34f185d-16ef-4e78-9df7-6ac3333bc54a":"K614cAWgkLjC" "https://gateway.watsonplatform.net/discovery/api/v1/environments?version=2017-11-07"
+    {
+      "environments" : [ {
+        "environment_id" : "system",
+        "name" : "Watson System Environment",
+        "description" : "Shared system data sources",
+        "read_only" : true
+      }, {
+        "environment_id" : "23d80cf1-3559-486c-897a-3ececb9f82ad",
+        "name" : "byod",
+        "description" : "",
+        "created" : "2018-02-09T12:50:50.777Z",
+        "updated" : "2018-02-09T12:50:50.777Z",
+        "read_only" : false
+      } ]
+    }
+
+Getting "Collection ID for WDS"
+  Srinivass-MBP:~ sriniva@us.ibm.com$
+  curl -X GET -u "b34f185d-16ef-4e78-9df7-6ac3333bc54a":"K614cAWgkLjC" "https://gateway.watsonplatform.net/discovery/api/v1/environments/23d80cf1-3559-486c-897a-3ececb9f82ad/collections?version=2017-11-07"
+  {
+  "collections" : [ {
+    "collection_id" : "e30ef041-fe64-4f05-b45e-f9c8b04904a8",
+    "name" : "ally-faq",
+    "configuration_id" : "a1d397eb-d786-4de0-a1b1-d7b52f2b0d34",
+    "language" : "en",
+    "status" : "active",
+    "description" : null,
+    "created" : "2018-02-09T12:51:12.155Z",
+    "updated" : "2018-02-09T12:51:12.155Z"
+    } ]
+  }
+
+  --------------------
+  Obtain Credentials from all services
+      WDS
+      {
+        "url": "https://gateway.watsonplatform.net/discovery/api",
+        "username": "b34f185d-16ef-4e78-9df7-6ac3333bc54a",
+        "password": "K614cAWgkLjC"
+      }
+
+      NLU
+      {
+        "url": "https://gateway.watsonplatform.net/natural-language-understanding/api",
+        "username": "59cf9ca8-0c78-4240-97b7-067f3b482dcf",
+        "password": "7JUFbRCxXdmh"
+      }
+
+      tone analyzer
+
+      {
+        "url": "https://gateway.watsonplatform.net/tone-analyzer/api",
+        "username": "d83e5c74-a0af-423e-b615-769ab0576ade",
+        "password": "2pESYyA0eq2P"
+      }
+
+      wCS
+
+      {
+        "url": "https://gateway.watsonplatform.net/conversation/api",
+        "username": "19d29fac-b7ed-4878-999e-6e86dcf0d4aa",
+        "password": "i1LRdkXflyoN"
+      }
+      WCS Workspace ID - Ally Chatbot
+        8af9e65b-9734-4311-a34e-206957d3e6b5
+
+      WCS Workspace ID - Banking Chatbot
+        3e3e19c9-97e5-412b-b6be-9869c28cc450

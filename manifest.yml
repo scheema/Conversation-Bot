@@ -1,0 +1,27 @@
+---
+declared-services:
+  wbc-conversation-service:
+    label: conversation
+    plan: free
+  wbc-natural-language-understanding-service:
+    label: natural-language-understanding
+    plan: free
+  wbc-discovery-service:
+    label: discovery
+    plan: lite
+  wbc-tone-analyzer-service:
+    label: tone_analyzer
+    plan: lite
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  name: WatsonKeyBankChatbot
+  disk_quota: 256M
+  random-route: true
+  timeout: 180
+  services:
+  - Watson-Conversation-Ally
+  - ally-toneanalyzer
+  - ally-nlu
+  - ally-wds
