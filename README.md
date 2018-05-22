@@ -64,7 +64,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 2. In Toolchains, click on Delivery Pipeline to watch while the app is deployed. Once deployed, the app can be viewed by clicking 'View app'.
 ![](doc/source/images/toolchain-pipeline.png)
 
-3. To see the app and services created and configured for this journey, use the Bluemix dashboard. The app is named `watson-banking-chatbot` with a unique suffix. The following services are created and easily identified by the `wbc-` prefix:
+3. To see the app and services created and configured for this journey, use the Bluemix dashboard. The app is named `watson-banking-chatbot` with a unique suffix. The following services are created and easily identified by the `wbc-` prefix as a example. (Remember to replace the names with what you have used when creating these services):
     * wbc-conversation-service
     * wbc-discovery-service
     * wbc-natural-language-understanding-service
