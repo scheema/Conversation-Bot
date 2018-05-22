@@ -1,19 +1,32 @@
 [![Build Status](https://travis-ci.org/IBM/watson-banking-chatbot.svg?branch=master)](https://travis-ci.org/IBM/watson-banking-chatbot)
 ![Bluemix Deployments](https://metrics-tracker.mybluemix.net/stats/527357940ca5e1027fbf945add3b15c4/badge.svg)
 
-# Create a banking chatbot with FAQ discovery, anger detection and natural language understanding
-In this developer journey, we will create a chatbot using Node.js and Watson Conversation. The Conversation flow will be enhanced by using Natural Language Understanding to identify entities and using Tone Analyzer to detect customer emotions. For FAQs, a call to the Discovery service will use passage retrieval to pull answers from a collection of documents.
+# Create a chatbot with RPA FAQ as a proof of concept
+In this developer journey, we will show how to create a basic chatbot using Node.js and Watson Assist (conversation) service.  This basic Conversation flow can be enhanced by using Natural Language Understanding to identify entities and using Tone Analyzer to detect customer emotions. Additionally for detailed questions, a call to the Discovery service will use passage retrieval to pull answers from a collection of documents.
 
-When the reader has completed this journey, they will understand how to:
+After developing this Chatbot the developer will understand how to:
 
 * Create a chatbot that converses via a web UI using Watson Conversation and Node.js
+* Customize the Watson Assist with Intents, Entities and Dialog Flows using the tools
+
+Future enhancements:
 * Use Watson Discovery with passage retrieval to find answers in FAQ documents
 * Use Watson Tone Analyzer to detect emotion in a conversation
 * Identify entities with Watson Natural Language Understanding
 
 ![](doc/source/images/architecture.png)
 
-## Flow
+## Included components for Basic Chatbot UseCase
+
+* [IBM Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html): Build, test and deploy a bot or virtual agent across mobile devices, messaging platforms, or even on a physical robot.
+
+## Even though the base case use one service, all the following are needed for code to work
+* wbc-conversation-service
+* wbc-discovery-service
+* wbc-natural-language-understanding-service
+* wbc-tone-analyzer-service
+
+## Flow for Future enhancements
 1. The FAQ documents are added to the Discovery collection.
 2. The user interacts with a chatbot via the app UI.
 3. User input is processed with Tone Analyzer to detect anger. An anger score is added to the context.
@@ -23,11 +36,7 @@ When the reader has completed this journey, they will understand how to:
    * Lookup additional information from bank services to append to the reply
    * Use Discovery to reply with an answer from the FAQ documents
 
-## With Watson
-
-Want to take your Watson app to the next level? Looking to leverage Watson Brand assets? Join the [With Watson](https://www.ibm.com/watson/with-watson) program which provides exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.
-
-## Included components
+## Included components for Enhancing the basic version
 
 * [IBM Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html): Build, test and deploy a bot or virtual agent across mobile devices, messaging platforms, or even on a physical robot.
 * [IBM Watson Discovery](https://www.ibm.com/watson/developercloud/discovery.html): A cognitive search and content analytics engine for applications to identify patterns, trends, and actionable insights.
@@ -41,11 +50,13 @@ Want to take your Watson app to the next level? Looking to leverage Watson Brand
 
 [![](http://img.youtube.com/vi/Jxi7U7VOMYg/0.jpg)](https://www.youtube.com/watch?v=Jxi7U7VOMYg)
 
-# Steps
+# Steps to create your own Chatbot - Two options
+Files to change:
+1) manifest.yml to reflect correct service names 2).env to reflect your own credentials
 
 Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locally.
 
-## Deploy to IBM Cloud
+## 1) Deploy to IBM Cloud using the button
 [![Deploy to Bluemix](https://metrics-tracker.mybluemix.net/stats/527357940ca5e1027fbf945add3b15c4/button.svg)](https://bluemix.net/deploy?repository=https://github.com/IBM/watson-banking-chatbot.git)
 
 1. Press the above ``Deploy to IBM Cloud`` button and then click on ``Deploy``.
@@ -59,7 +70,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
     * wbc-natural-language-understanding-service
     * wbc-tone-analyzer-service
 
-## Run locally
+## 2) Run locally and then push the code to IBM Cloud
 > NOTE: These steps are only needed when running locally instead of using the ``Deploy to IBM Cloud`` button.
 
 1. [Clone the repo](#1-clone-the-repo)
@@ -77,7 +88,7 @@ Clone the `watson-banking-chatbot` locally. In a terminal, run:
 $ git clone https://github.com/IBM/watson-banking-chatbot
 ```
 
-We’ll be using the file [`data/conversation/workspaces/banking.json`](data/conversation/workspaces/banking.json) and the folder
+We’ll be using the file (customized-version is developed or provided by IBM as a starting point) [`data/conversation/workspaces/<customized-version.json>`](data/conversation/workspaces/customized-version.json) and the folder
 [`data/conversation/workspaces/`](data/conversation/workspaces/)
 
 ### 2. Create Watson services with IBM Cloud
@@ -110,7 +121,7 @@ workspace and select **View details**. Save this ID for later.
 
 ![](doc/source/images/dialog.png)
 
-### 4. Load the Discovery documents
+### 4. Load the Discovery documents (optional for future)
 
 Launch the **Watson Discovery** tool. Create a **new data collection**
 and give the data collection a unique name.
@@ -170,7 +181,7 @@ TONE_ANALYZER_PASSWORD=<add_tone_analyzer_password>
 
 ```
 
-### 6. Run the application
+### 6. Run the application (locally)
 1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
 1. Start the app by running `npm install`, followed by `npm start`.
 1. Use the chatbot at `localhost:3000`.
@@ -179,6 +190,15 @@ TONE_ANALYZER_PASSWORD=<add_tone_analyzer_password>
 # Sample output
 
 ![](doc/source/images/sample_output.png)
+
+### 7. Pushing the code to IBM Cloud to create application
+cf login -> enter email and password
+
+select the IBM Cloud organization
+
+Edit the manifest.yml file and replace the name of the services with those you have created in the IBM Cloud environment
+
+cf push
 
 # Links
 
@@ -201,7 +221,11 @@ be usable on restart. If you used `Deploy to IBM Cloud` the restart should be au
 a Discovery environment, this will fail. If you are not using Discovery, check for an old
 service thay you may want to delete. Otherwise use the .env DISCOVERY_ENVIRONMENT_ID to tell
 the app which environment you want it to use. A collection will be created in this environment
-using the default configuration.
+
+## With Watson
+
+Want to take your Watson app to the next level? Looking to leverage Watson Brand assets? Join the [With Watson](https://www.ibm.com/watson/with-watson) program which provides exclusive brand, marketing, and tech resources to amplify and accelerate your Watson embedded commercial solution.using the default configuration.
+
 
 # License
 [Apache 2.0](LICENSE)
