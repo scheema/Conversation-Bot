@@ -85,7 +85,7 @@ Use the ``Deploy to IBM Cloud`` button **OR** create the services and run locall
 Clone the `watson-banking-chatbot` locally. In a terminal, run:
 
 ```
-$ git clone https://github.com/IBM/watson-banking-chatbot
+$ git clone https://github.com/scheema/Conversation-Bot
 ```
 
 We’ll be using the file (customized-version is developed or provided by IBM as a starting point) [`data/conversation/workspaces/kb_conversation.json>`](data/conversation/workspaces/kb_conversation.json.json) and the folder
@@ -120,19 +120,6 @@ workspace and select **View details**. Save this ID for later.
 **Dialog** tab, here's a snippet of the dialog:
 
 ![](doc/source/images/dialog.png)
-
-### 4. Load the Discovery documents (optional for future)
-
-Launch the **Watson Discovery** tool. Create a **new data collection**
-and give the data collection a unique name.
-
-<p align="center">
-  <img width="400" src="doc/source/images/new_collection.png">
-</p>
-
-> Save the **environment_id** and **collection_id** for your `.env` file in the next step.
-
-Under `Add data to this collection` use `Drag and drop your documents here or browse from computer` to seed the content with the five documents in `data/discovery/docs`.
 
 ### 5. Configure credentials
 
@@ -183,6 +170,7 @@ TONE_ANALYZER_PASSWORD=<add_tone_analyzer_password>
 
 ### 6. Run the application (locally)
 1. Install [Node.js](https://nodejs.org/en/) runtime or NPM.
+2. Install IBM Cloud CLI (https://console.bluemix.net/docs/cli/reference/bluemix_cli/get_started.html#getting-started)
 1. Start the app by running `npm install`, followed by `npm start`.
 1. Use the chatbot at `localhost:3000`.
 > Note: server host can be changed as required in server.js and `PORT` can be set in `.env`.
