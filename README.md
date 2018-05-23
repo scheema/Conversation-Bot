@@ -16,6 +16,15 @@ Future enhancements:
 
 ![](doc/source/images/architecture.png)
 
+## Please refer to these documents for additional information (Advanced)
+
+* API SDK : https://github.com/watson-developer-cloud
+
+* Advanced Dialog Features: https://medium.com/ibm-watson/using-advanced-dialog-features-in-watson-conversation-5c0cea89e9b3
+
+* Invoking calls from Dialog Nodes: https://console.bluemix.net/docs/services/conversation/dialog-actions.html#dialog-actions
+
+
 ## Included components for Basic Chatbot UseCase
 
 * [IBM Watson Conversation](https://www.ibm.com/watson/developercloud/conversation.html): Build, test and deploy a bot or virtual agent across mobile devices, messaging platforms, or even on a physical robot.
